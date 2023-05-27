@@ -31,12 +31,35 @@ const userDetailsList = [
 ]
 
 class App extends Component {
+  state = {searchInput: ''}
+
+  onChangeSearchInput = event => {
+    // const {searchInput} = this.state
+
+    // console.log(event.target.value)
+
+    this.setState({searchInput: event.target.value})
+  }
+
   render() {
+    const {searchInput} = this.state
+    console.log(searchInput)
+
+    const searchResults = userDetailsList.filter(eachUser =>
+      eachUser.name.includes(searchInput),
+    )
+
     return (
       <div className="app-container">
         <h1 className="title">Users List</h1>
+        <input
+          type="search"
+          value={searchInput}
+          onChange={this.onChangeSearchInput}
+        />
+
         <ul className="list-container">
-          {userDetailsList.map(eachUser => (
+          {searchResults.map(eachUser => (
             <UserProfile userDetails={eachUser} key={eachUser.uniqueNo} />
           ))}
         </ul>
