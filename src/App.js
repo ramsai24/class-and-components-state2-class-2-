@@ -3,7 +3,7 @@ import UserProfile from './components/UserProfile'
 
 import './App.css'
 
-const userDetailsList = [
+const initialUserDetailsList = [
   {
     uniqueNo: 1,
     imageUrl: 'https://assets.ccbp.in/frontend/react-js/esther-howard-img.png',
@@ -31,7 +31,7 @@ const userDetailsList = [
 ]
 
 class App extends Component {
-  state = {searchInput: ''}
+  state = {searchInput: '', userDetailsList: initialUserDetailsList}
 
   onChangeSearchInput = event => {
     // const {searchInput} = this.state
@@ -41,11 +41,16 @@ class App extends Component {
     this.setState({searchInput: event.target.value})
   }
 
+  OnDeleteUser = () => {
+    // const {userDetailsList} = this.state
+    console.log(`onDeleteFunction triggered`)
+  }
+
   render() {
     const {searchInput} = this.state
     console.log(searchInput)
 
-    const searchResults = userDetailsList.filter(eachUser =>
+    const searchResults = initialUserDetailsList.filter(eachUser =>
       eachUser.name.includes(searchInput),
     )
 
@@ -60,7 +65,11 @@ class App extends Component {
 
         <ul className="list-container">
           {searchResults.map(eachUser => (
-            <UserProfile userDetails={eachUser} key={eachUser.uniqueNo} />
+            <UserProfile
+              userDetails={eachUser}
+              key={eachUser.uniqueNo}
+              onDeleteFunction={this.OnDeleteUser}
+            />
           ))}
         </ul>
       </div>
