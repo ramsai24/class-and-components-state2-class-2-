@@ -41,9 +41,9 @@ class App extends Component {
     this.setState({searchInput: event.target.value})
   }
 
-  onDeletes = () => {
+  onDeleteListItems = () => {
     // const {userDetailsList} = this.state
-    console.log(`onDeleteFuntion trigered`)
+    console.log(`onDeleteFuntion() trigered`)
   }
 
   render() {
@@ -68,7 +68,7 @@ class App extends Component {
             <UserProfile
               userDetails={eachUser}
               key={eachUser.uniqueNo}
-              onDeleteFunction={this.OnDeletes}
+              onDeleteFunction={this.onDeleteListItems}
             />
           ))}
         </ul>
