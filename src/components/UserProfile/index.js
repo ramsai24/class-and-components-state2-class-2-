@@ -2,11 +2,11 @@ import './index.css'
 
 const UserProfile = props => {
   const {userDetails, onDeleteFunction} = props
-  const {imageUrl, name, role} = userDetails
+  const {imageUrl, name, role, uniqueNo} = userDetails
 
   const onDelete = () => {
     console.log('trigger')
-    onDeleteFunction()
+    onDeleteFunction(uniqueNo)
   }
   return (
     <li className="user-card-container">
